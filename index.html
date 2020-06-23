@@ -16,20 +16,39 @@
 </head>
 
 <body>
-  <div class="vaccine-tracker">
-    <aside class="navigation">
+  <div class="vaccine-tracker" id="vaccine-tracker">
+    <aside class="drawer-navigation">
+      <h1>All vaccines (average)</h1>
+      <progress max="100" value="10"></progress>
       <ul>
         <li>
           <a href="#">
             <img src="" />
             <span>RNA</span>
+            <progress max="100" value="10"></progress>
           </a>
+          <ul>
+            <li>
+              <a href="#sanofi">
+                <span>Sanofi</span>
+                <progress max="100" value="10"></progress>
+              </a>
+            </li>
+
+            <li>
+              <a href="#novavax">
+                <span>Novavax</span>
+                <progress max="100" value="10"></progress>
+              </a>
+            </li>
+          </ul>
         </li>
 
         <li>
           <a href="#">
             <img src="" />
             <span>Inactivated</span>
+            <progress max="100" value="10"></progress>
           </a>
         </li>
 
@@ -37,6 +56,7 @@
           <a href="#">
             <img src="" />
             <span>Protein Subunit</span>
+            <progress max="100" value="10"></progress>
           </a>
         </li>
 
@@ -44,6 +64,7 @@
           <a href="#">
             <img src="" />
             <span>Live Attenuated Virus</span>
+            <progress max="100" value="10"></progress>
           </a>
         </li>
 
@@ -51,6 +72,7 @@
           <a href="#">
             <img src="" />
             <span>VLP</span>
+            <progress max="100" value="10"></progress>
           </a>
         </li>
 
@@ -58,6 +80,7 @@
           <a href="#">
             <img src="" />
             <span>Replicating Viral Vector</span>
+            <progress max="100" value="10"></progress>
           </a>
         </li>
 
@@ -65,6 +88,7 @@
           <a href="#">
             <img src="" />
             <span>DNA</span>
+            <progress max="100" value="10"></progress>
           </a>
         </li>
 
@@ -72,21 +96,34 @@
           <a href="#">
             <img src="" />
             <span>Unknown</span>
+            <progress max="100" value="10"></progress>
           </a>
         </li>
       </ul>
     </aside>
-    <main class="report">
-      <button class="previous"></button>
-      <button class="next"></button>
-      <progress max="100" value="10"></progress>
+
+    <div class="report" id="sanofi">
       <div class="body">
         <h1>Sanofi</h1>
         <h2>Chinese based manufacturer blah blah who cares</h2>
         <p>A little bit about the manufacturer talking about you like how they're a manufacturer and some bullshit like that.</p>
       </div>
-    </main>
+    </div>
+
+    <div class="report" id="novavax">
+      <div class="body">
+        <h1>Novavax</h1>
+        <h2>Chinese based manufacturer blah blah who cares</h2>
+        <p>A little bit about the manufacturer talking about you like how they're a manufacturer and some bullshit like that.</p>
+      </div>
+    </div>
+
+    <progress max="100" value="10"></progress>
+    <button class="previous" id="nav_previous"></button>
+    <button class="next" id="nav_next"></button>
+    <button class="expander" id="expander"></button>
   </div>
+  <script src="js/main.js"></script>
 </body>
 
 </html>
