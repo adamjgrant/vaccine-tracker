@@ -4,6 +4,7 @@ const expander        = document.getElementById("expander"),
       categories      = document.querySelectorAll(".vaccine-tracker .drawer-navigation > ul > li > a"),
       manufacturers   = document.querySelectorAll(".vaccine-tracker .drawer-navigation > ul > li > ul > li > a"),
       reports         = Array.from(document.querySelectorAll(".vaccine-tracker .report")),
+      fixed_progress_bar = document.getElementById("fixed_progress_bar"),
       nav_previous    = document.getElementById("nav_previous"),
       nav_next        = document.getElementById("nav_next");
 
@@ -39,10 +40,10 @@ const getMiddleThreeAnchorsForCurrentURL = () => {
 }
 
 const go_to_anchor = (anchor) => {
-  const url_without_anchor = document.URL.split("#")[0],
-        base = url_without_anchor.split("?")[0];
+  const url_without_anchor = document.URL.split("#")[0];
+        // base = url_without_anchor.split("?")[0];
 
-  return document.location = `${base}#${anchor}`;
+  return document.location = `${url_without_anchor}#${anchor}`;
 }
 
 // INTERACTIVE FUNCTIONS
@@ -96,3 +97,11 @@ nav_previous.addEventListener("click", (e) => {
 nav_next.addEventListener("click", (e) => {
   go_to_anchor(getMiddleThreeAnchorsForCurrentURL().next);
 });
+
+const set_current_page = (anchor) => {
+  set_value_of_fixed_progress_bar()
+}
+
+const set_value_of_fixed_progress_bar = (value) => {
+  fixed_progress_bar.value = value;
+}

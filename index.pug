@@ -9,6 +9,8 @@ head
   link(rel='stylesheet' href='css/main.css')
   meta(name='theme-color' content='#fafafa')
 - function string_to_slug (str) { str = str.replace(/^\s+|\s+$/g, ''); str = str.toLowerCase(); var from = "àáäâèéëêìíïîòóöôùúüûñç·/_,:;"; var to   = "aaaaeeeeiiiioooouuuunc------"; for (var i=0, l=from.length ; i<l ; i++) { str = str.replace(new RegExp(from.charAt(i), 'g'), to.charAt(i)); } str = str.replace(/[^a-z0-9 -]/g, '').replace(/\s+/g, '-').replace(/-+/g, '-'); return str; }
+- function progress_for_manufacturer (m) { return Object.keys(m.progress).reduce((p, key) => p + m.progress[key], 0)/(Object.keys(m.progress).length) * 100}
+- function progress_for_category (c) { return c.manufacturers.reduce((p, m) => p + progress_for_manufacturer(m), 0)/c.manufacturers.length }
 #vaccine-tracker.vaccine-tracker
   aside.drawer-navigation
     h1 All vaccines (average)
@@ -19,13 +21,13 @@ head
           a(href='#')
             img(src='')
             span= category.name
-            progress(max='100' value='10')
+            progress(max='100' value=`${progress_for_category(category)}`)
             ul
               each manufacturer in category.manufacturers
                 li
                   a(href=`#${string_to_slug(manufacturer.name)}`)
                     span= manufacturer.name
-                    progress(max='100' value='10')
+                    progress(max='100' value=`${progress_for_manufacturer(manufacturer)}`)
 
   each manufacturer in categories.map(category => category.manufacturers).flat()
     - slug = string_to_slug(manufacturer.name);
@@ -35,7 +37,7 @@ head
         h2= manufacturer.short_description
         p= manufacturer.long_description
 
-  progress(max='100' value='10')
+  progress#fixed_progress_bar(max='100' value='10')
   button#nav_previous.previous
   button#nav_next.next
   button#expander.expander
