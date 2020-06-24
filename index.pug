@@ -13,67 +13,26 @@ head
     h1 All vaccines (average)
     progress(max='100' value='10')
     ul
-      li
-        a(href='#')
-          img(src='')
-          span RNA
-          progress(max='100' value='10')
-        ul
-          li
-            a(href='#sanofi')
-              span Sanofi
-              progress(max='100' value='10')
-          li
-            a(href='#novavax')
-              span Novavax
-              progress(max='100' value='10')
-      li
-        a(href='#')
-          img(src='')
-          span Inactivated
-          progress(max='100' value='10')
-      li
-        a(href='#')
-          img(src='')
-          span Protein Subunit
-          progress(max='100' value='10')
-      li
-        a(href='#')
-          img(src='')
-          span Live Attenuated Virus
-          progress(max='100' value='10')
-      li
-        a(href='#')
-          img(src='')
-          span VLP
-          progress(max='100' value='10')
-      li
-        a(href='#')
-          img(src='')
-          span Replicating Viral Vector
-          progress(max='100' value='10')
-      li
-        a(href='#')
-          img(src='')
-          span DNA
-          progress(max='100' value='10')
-      li
-        a(href='#')
-          img(src='')
-          span Unknown
-          progress(max='100' value='10')
-  #sanofi.report
-    .body
-      h1 Sanofi
-      h2 Chinese based manufacturer blah blah who cares
-      p
-        | A little bit about the manufacturer talking about you like how they&apos;re a manufacturer and some bullshit like that.
-  #novavax.report
-    .body
-      h1 Novavax
-      h2 Chinese based manufacturer blah blah who cares
-      p
-        | A little bit about the manufacturer talking about you like how they&apos;re a manufacturer and some bullshit like that.
+      each category in categories
+        li
+          a(href='#')
+            img(src='')
+            span= category.name
+            progress(max='100' value='10')
+            ul
+              each manufacturer in category.manufacturers
+                li
+                  a(href='#sanofi')
+                    span= manufacturer.name
+                    progress(max='100' value='10')
+
+  each manufacturer in categories.map(category => category.manufacturers).flat()
+    #sanofi.report
+      .body
+        h1= manufacturer.name
+        h2= manufacturer.short_description
+        p= manufacturer.long_description
+
   progress(max='100' value='10')
   button#nav_previous.previous
   button#nav_next.next

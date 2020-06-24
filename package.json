@@ -6,7 +6,7 @@
   "license": "",
   "author": "",
   "scripts": {
-    "build": "pug index.pug",
+    "build": "pug -O js/data.json index.pug",
     "dev": "parcel index.html --open",
     "start": "npm run build && npm run dev",
     "test": "echo \"Error: no test specified\" && exit 1"
