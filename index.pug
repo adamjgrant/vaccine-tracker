@@ -8,6 +8,7 @@ head
   link(rel='stylesheet' href='css/normalize.css')
   link(rel='stylesheet' href='css/main.css')
   meta(name='theme-color' content='#fafafa')
+- function string_to_slug (str) { str = str.replace(/^\s+|\s+$/g, ''); str = str.toLowerCase(); var from = "àáäâèéëêìíïîòóöôùúüûñç·/_,:;"; var to   = "aaaaeeeeiiiioooouuuunc------"; for (var i=0, l=from.length ; i<l ; i++) { str = str.replace(new RegExp(from.charAt(i), 'g'), to.charAt(i)); } str = str.replace(/[^a-z0-9 -]/g, '').replace(/\s+/g, '-').replace(/-+/g, '-'); return str; }
 #vaccine-tracker.vaccine-tracker
   aside.drawer-navigation
     h1 All vaccines (average)
@@ -22,12 +23,13 @@ head
             ul
               each manufacturer in category.manufacturers
                 li
-                  a(href='#sanofi')
+                  a(href=`#${string_to_slug(manufacturer.name)}`)
                     span= manufacturer.name
                     progress(max='100' value='10')
 
   each manufacturer in categories.map(category => category.manufacturers).flat()
-    #sanofi.report
+    - slug = string_to_slug(manufacturer.name);
+    .report(id=slug)
       .body
         h1= manufacturer.name
         h2= manufacturer.short_description
