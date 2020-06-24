@@ -9,8 +9,6 @@ const expander        = document.getElementById("expander"),
       nav_next        = document.getElementById("nav_next"),
       report_anchors  = reports.map(report => report.id);
 
-let   current_page    = reports[0].id;
-
 // STRINGS
 const EXPANDED_CLASS  = "expanded",
       FOCUSED_CLASS   = "focused";
@@ -136,8 +134,6 @@ nav_next.addEventListener("click", (e) => {
 
 const set_current_page = (anchor) => {
   const manufacturer_element = manufacturers.find(m => getAnchor(m.href) === anchor);
-
-  current_page = anchor;
 
   if (manufacturer_element) {
     const manufacturer_progress = manufacturer_element.querySelector("progress");
