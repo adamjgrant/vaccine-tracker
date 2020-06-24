@@ -6,20 +6,56 @@ const expander        = document.getElementById("expander"),
       reports         = Array.from(document.querySelectorAll(".vaccine-tracker .report")),
       fixed_progress_bar = document.getElementById("fixed_progress_bar"),
       nav_previous    = document.getElementById("nav_previous"),
-      nav_next        = document.getElementById("nav_next");
+      nav_next        = document.getElementById("nav_next"),
+      report_anchors  = reports.map(report => report.id);
+
+let   current_page    = reports[0].id;
 
 // STRINGS
 const EXPANDED_CLASS  = "expanded",
       FOCUSED_CLASS   = "focused";
 
 // UTILITY FUNCTIONS
+let debounce, debounceQueue;
+
+debounceQueue = {};
+
+debounce = function(fn, id, delay, args, that) {
+  delay = delay || 1000;
+  that = that || this;
+  args = args || new Array();
+  if (typeof debounceQueue[id] !== "object") {
+    debounceQueue[id] = new Object();
+  }
+  if (typeof debounceQueue[id].debounceTimer !== "undefined") {
+    clearTimeout(debounceQueue[id].debounceTimer);
+  }
+  return debounceQueue[id] = {
+    fn: fn,
+    id: id,
+    delay: delay,
+    args: args,
+    debounceTimer: setTimeout(function() {
+      debounceQueue[id].fn.apply(that, debounceQueue[id].args);
+      return debounceQueue[id] = void 0;
+    }, delay)
+  };
+};
+
 const getAnchor = (url = document.URL) => {
   return (url.split('#').length > 1) ? url.split('#')[1] : null;
 }
 
+function getOffset(el) {
+  const rect = el.getBoundingClientRect();
+  return {
+    left: rect.left + window.scrollX,
+    top: rect.top + window.scrollY
+  };
+}
+
 const getMiddleThreeAnchorsForCurrentURL = () => {
-  const report_anchors = reports.map(report => report.id),
-        current_anchor = getAnchor(),
+  const current_anchor = getAnchor(),
         index_of_current_anchor = report_anchors.indexOf(current_anchor);
 
   let anchors = {
@@ -101,12 +137,36 @@ nav_next.addEventListener("click", (e) => {
 const set_current_page = (anchor) => {
   const manufacturer_element = manufacturers.find(m => getAnchor(m.href) === anchor);
 
+  current_page = anchor;
+
   if (manufacturer_element) {
     const manufacturer_progress = manufacturer_element.querySelector("progress");
     set_value_of_fixed_progress_bar(manufacturer_progress.value)
   }
+
+  console.log(current_page);
+}
+
+const detect_current_page = () => {
+  const anchor_positions = reports.map(report => {
+    return [report.id, getOffset(report).top];
+  });
+  const vh_half = document.documentElement.clientHeight/2;
+
+  anchor_positions.forEach(position => {
+    const top_zone    = window.scrollY - vh_half,
+          bottom_zone = window.scrollY + vh_half;
+
+    if (position[1] < bottom_zone && position[1] > top_zone) {
+      set_current_page(position[0]);
+    }
+  });
 }
 
 const set_value_of_fixed_progress_bar = (value) => {
   fixed_progress_bar.value = value;
 }
+
+window.addEventListener("scroll", e => {
+  debounce(detect_current_page, "scrollspy", 250, this);
+});
