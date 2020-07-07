@@ -13,8 +13,10 @@ head
 - function progress_for_category (c) { return c.manufacturers.reduce((p, m) => p + progress_for_manufacturer(m), 0)/c.manufacturers.length }
 #vaccine-tracker.vaccine-tracker
   aside.drawer-navigation
-    h1 All vaccines (average)
-    progress(max='100' value='10')
+    header
+      h1.default All vaccines (average)
+      a.back(href="#") &laquo; Back
+      progress.default(max='100' value='10')
     ul
       each category in categories
         li

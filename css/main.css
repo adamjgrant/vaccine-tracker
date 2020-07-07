@@ -297,11 +297,19 @@ textarea {
 
 .vaccine-tracker .report {
   margin: 0;
-  padding-left: calc(var(--progress-margin) + var(--progress-height));
+  padding-left: calc(var(--progress-margin) * 2 + var(--progress-height));
   margin-right: var(--report-gutter);
   display: flex;
   height: 100vh;
   position: relative;
+}
+
+.vaccine-tracker .report h1 {
+  margin-bottom: 5px;
+}
+
+.vaccine-tracker .report h2 {
+  margin-top: 0;
 }
 
 .vaccine-tracker > progress {
@@ -341,6 +349,11 @@ textarea {
   height: 90vh;
 }
 
+.vaccine-tracker .drawer-navigation > ul {
+  overflow: auto;
+  height: 100%;
+}
+
 .vaccine-tracker .drawer-navigation h1 {
   font-size: 1.2rem;
   margin: 0;
@@ -349,6 +362,20 @@ textarea {
 .vaccine-tracker .drawer-navigation a[href] {
   text-decoration: none;
   color: #222;
+}
+
+.vaccine-tracker .drawer-navigation header .back {
+  display: none;
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+}
+
+.vaccine-tracker .drawer-navigation header.filtered .back {
+  display: block;
+}
+
+.vaccine-tracker .drawer-navigation header.filtered .default {
+  display: none;
 }
 
 .vaccine-tracker .drawer-navigation progress {
