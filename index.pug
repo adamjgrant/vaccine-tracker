@@ -64,7 +64,11 @@ head
 
   progress#fixed_progress_bar(max='100' value='10')
   div(data-component="report_navigator")
-    button#nav_previous.previous
-    button#nav_next.next
+    button.previous
+    button.next
 script(src='js/vendor/mozart.min.js')
 script(src='js/main.js')
+
+script(src='js/components/report_navigator/report_navigator_acts.js')
+script(src='js/components/report_navigator/report_navigator_events.js')
+script(src='js/init.js')
