@@ -275,7 +275,7 @@ textarea {
   box-sizing: border-box;
 }
 
-.vaccine-tracker .drawer-navigation {
+.vaccine-tracker [data-component="drawer_navigation"] {
   position: fixed;
   bottom: 0;
   left: 0;
@@ -296,7 +296,7 @@ textarea {
   list-style: none;
 }
 
-.vaccine-tracker .report {
+.vaccine-tracker [data-component="report"] {
   margin: 0;
   padding-left: calc(var(--progress-margin) * 2 + var(--progress-height));
   margin-right: var(--report-gutter);
@@ -305,15 +305,15 @@ textarea {
   position: relative;
 }
 
-.vaccine-tracker .report .body {
+.vaccine-tracker [data-component="report"] .body {
   max-width: calc(100vw - var(--progress-margin) * 2 + var(--progress-height));
 }
 
-.vaccine-tracker .report h1 {
+.vaccine-tracker [data-component="report"] h1 {
   margin-bottom: 5px;
 }
 
-.vaccine-tracker .report h2 {
+.vaccine-tracker [data-component="report"] h2 {
   margin-top: 0;
 }
 
@@ -350,40 +350,40 @@ textarea {
   z-index: 11;
 }
 
-.vaccine-tracker.expanded .drawer-navigation {
+.vaccine-tracker.expanded [data-component="drawer_navigation"] {
   height: 90vh;
 }
 
-.vaccine-tracker .drawer-navigation > ul {
+.vaccine-tracker [data-component="drawer_navigation"] > ul {
   overflow: auto;
   height: 100%;
 }
 
-.vaccine-tracker .drawer-navigation h1 {
+.vaccine-tracker [data-component="drawer_navigation"] h1 {
   font-size: 1.2rem;
   margin: 0;
 }
 
-.vaccine-tracker .drawer-navigation a[href] {
+.vaccine-tracker [data-component="drawer_navigation"] a[href] {
   text-decoration: none;
   color: #222;
 }
 
-.vaccine-tracker .drawer-navigation header .back {
+.vaccine-tracker [data-component="drawer_navigation"] header .back {
   display: none;
   font-size: 1.1rem;
   margin-bottom: 1rem;
 }
 
-.vaccine-tracker .drawer-navigation header.filtered .back {
+.vaccine-tracker [data-component="drawer_navigation"] header.filtered .back {
   display: block;
 }
 
-.vaccine-tracker .drawer-navigation header.filtered .default {
+.vaccine-tracker [data-component="drawer_navigation"] header.filtered .default {
   display: none;
 }
 
-.vaccine-tracker .drawer-navigation progress {
+.vaccine-tracker [data-component="drawer_navigation"] progress {
   display: block;
   width: calc(100% - var(--next-previous-button-width) - var(--gutter));
   margin-bottom: 15px;
@@ -412,31 +412,31 @@ textarea {
   height: 10px;
 }
 
-.vaccine-tracker .drawer-navigation ul.focused > li:not(.focused) {
+.vaccine-tracker [data-component="drawer_navigation"] ul.focused > li:not(.focused) {
   display: none;
 }
 
-.vaccine-tracker .drawer-navigation ul ul {
+.vaccine-tracker [data-component="drawer_navigation"] ul ul {
   display: none;
 }
 
-.vaccine-tracker .drawer-navigation ul.focused ul {
+.vaccine-tracker [data-component="drawer_navigation"] ul.focused ul {
   margin-left: var(--gutter);
   display: block;
 }
 
-.vaccine-tracker .quick-stats {
+.vaccine-tracker [data-component="quick_stats"] {
   list-style: none;
   margin: 0;
   padding: 0;
   display: flex;
 }
 
-.vaccine-tracker .quick-stats li {
+.vaccine-tracker [data-component="quick_stats"] li {
   margin: 5px;
 }
 
-.vaccine-tracker .quick-stats .count {
+.vaccine-tracker [data-component="quick_stats"] .count {
   background: #b3d4fc;
   color: white;
   font-size: 2rem;
