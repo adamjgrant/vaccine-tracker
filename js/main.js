@@ -2,8 +2,8 @@
 const expander        = document.getElementById("expander"),
       vaccine_tracker = document.getElementById("vaccine-tracker"),
       drawer_navigation = document.querySelector(".vaccine-tracker .drawer-navigation"),
-      categories      = drawer_navigation.querySelectorAll("ul > li > a"),
-      manufacturers   = Array.from(drawer_navigation.querySelectorAll("ul > li > ul > li > a")),
+      categories      = document.querySelectorAll(".vaccine-tracker .drawer-navigation > ul > li > a"),
+      manufacturers   = Array.from(document.querySelectorAll(".vaccine-tracker .drawer-navigation > ul > li > ul > li > a")),
       reports         = Array.from(document.querySelectorAll(".vaccine-tracker .report")),
       fixed_progress_bar = document.getElementById("fixed_progress_bar"),
       nav_previous    = document.getElementById("nav_previous"),
@@ -100,7 +100,7 @@ expander.addEventListener("click", (e) => {
 manufacturers.forEach(manufacturer => {
   (manufacturer => {
     manufacturer.addEventListener("click", (e) => {
-      vaccine_tracker.classList.toggle(EXPANDED_CLASS);
+      vaccine_tracker.classList.remove(EXPANDED_CLASS);
     });
   })(manufacturer);
 });
