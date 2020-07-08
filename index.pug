@@ -30,6 +30,28 @@ head
                   a(href=`#${string_to_slug(manufacturer.name)}`)
                     span= manufacturer.name
                     progress(max='100' value=`${progress_for_manufacturer(manufacturer)}`)
+  .report(id="all_vaccines")
+    .body
+      h1 All Vaccines
+      ul.quick-stats
+        li
+          span.count 15
+          span.label Pre-Clinical Trials
+        li
+          span.count 10
+          span.label Phase 1
+        li
+          span.count 12
+          span.label Phase 2
+        li
+          span.count 4
+          span.label Phase 3
+        li
+          span.count 0
+          span.label Registration
+        li
+          span.count 0
+          span.label Distribution
 
   each manufacturer in categories.map(category => category.manufacturers).flat()
     - slug = string_to_slug(manufacturer.name);
@@ -43,4 +65,5 @@ head
   button#nav_previous.previous
   button#nav_next.next
   button#expander.expander
+script(src='js/mozart.js')
 script(src='js/main.js')

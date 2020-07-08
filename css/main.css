@@ -287,6 +287,7 @@ textarea {
   background: var(--drawer-color);
   z-index: 10;
   transition: height 0.2s;
+  padding-top: 62px;
 }
 
 .vaccine-tracker ul {
@@ -302,6 +303,10 @@ textarea {
   display: flex;
   height: 100vh;
   position: relative;
+}
+
+.vaccine-tracker .report .body {
+  max-width: calc(100vw - var(--progress-margin) * 2 + var(--progress-height));
 }
 
 .vaccine-tracker .report h1 {
@@ -418,4 +423,23 @@ textarea {
 .vaccine-tracker .drawer-navigation ul.focused ul {
   margin-left: var(--gutter);
   display: block;
+}
+
+.vaccine-tracker .quick-stats {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.vaccine-tracker .quick-stats li {
+  margin: 5px;
+}
+
+.vaccine-tracker .quick-stats .count {
+  background: #b3d4fc;
+  color: white;
+  font-size: 2rem;
+  padding: 25px;
+  width: 100%;
 }
